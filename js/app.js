@@ -196,3 +196,13 @@ console.log('Event listener attached - form is ready!');
 
 // Display empty message when page first loads
 displayFavorites();
+
+// Connect search input to searchFavorites function
+const searchInput = document.getElementById('search-input');
+searchInput.addEventListener('input', searchFavorites);
+
+// Connect category filter to searchFavorites function
+const categoryFilter = document.getElementById('category-filter');
+categoryFilter.addEventListener('change', searchFavorites);
+
+console.log('Search and filter event listeners attached!');
