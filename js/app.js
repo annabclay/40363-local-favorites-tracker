@@ -8,6 +8,7 @@ console.log('LAB14: Delete, Search, and Filter');
 // Array to store all favorites
 let favorites = [];
 
+
 // Get references to DOM elements
 const form = document.getElementById('add-favorite-form');
 const favoritesList = document.getElementById('favorites-list');
@@ -133,26 +134,17 @@ function searchFavorites() {
     });
 }
 
-// Function to delete a favorite by index
-function deleteFavorite(index) {
-    console.log('Deleting favorite at index:', index);
-    console.log('Favorite to delete:', favorites[index].name);
-
-    // Confirm deletion with user
-    const favorite = favorites[index];
-    const confirmDelete = confirm(`Are you sure you want to delete "${favorite.name}"?`);
-
     if (confirmDelete) {
         // Remove from array
         favorites.splice(index, 1);
         console.log('Favorite deleted. Total remaining:', favorites.length);
 
+        // Save to localStorage
+        saveFavorites();
+
         // Re-apply current search/filter
         searchFavorites();
-    } else {
-        console.log('Deletion cancelled by user');
     }
-}
 
 // Function to handle adding a new favorite
 function addFavorite(event) {
@@ -211,6 +203,6 @@ console.log('Event listeners attached - app is ready!');
 // Load saved favorites from localStorage on startup
 loadFavorites();
 
-// Display the loaded favorites (or empty message)
-displayFavorites();
+
+
 
