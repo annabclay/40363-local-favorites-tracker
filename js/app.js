@@ -5,8 +5,26 @@
 
 console.log('LAB14: Delete, Search, and Filter');
 
-// Array to store all favorites
-let favorites = [];
+// Persisted favorites helper functions
+function loadFavorites() {
+    try {
+        return JSON.parse(localStorage.getItem('favorites') || '[]');
+    } catch (e) {
+        console.error('Failed to parse favorites from localStorage', e);
+        return [];
+    }
+}
+
+function saveFavorites(favs) {
+    try {
+        localStorage.setItem('favorites', JSON.stringify(favs));
+    } catch (e) {
+        console.error('Failed to save favorites to localStorage', e);
+    }
+}
+
+// Array to store all favorites (loaded from localStorage)
+let favorites = loadFavorites();
 
 // Get references to DOM elements
 const form = document.getElementById('add-favorite-form');
@@ -41,7 +59,7 @@ function displayFavorites() {
 // Function to search and filter favorites
 function searchFavorites() {
     // Get the search input value
-    const searchText = searchInput.value.toLowerCase().trim();
+    const searchText = (searchInput.value || '').toLowerCase().trim();
     const selectedCategory = categoryFilter.value;
 
     console.log('Searching for:', searchText, 'Category:', selectedCategory);
@@ -54,7 +72,7 @@ function searchFavorites() {
         // Check if name or notes match search text
         const matchesSearch = searchText === '' ||
                              favorite.name.toLowerCase().includes(searchText) ||
-                             favorite.notes.toLowerCase().includes(searchText);
+                             (favorite.notes || '').toLowerCase().includes(searchText);
 
         // Check if category matches filter
         const matchesCategory = selectedCategory === 'all' ||
@@ -106,6 +124,10 @@ function searchFavorites() {
 // Function to delete a favorite by index
 function deleteFavorite(index) {
     console.log('Deleting favorite at index:', index);
+    if (!favorites[index]) {
+        console.warn('No favorite found at index', index);
+        return;
+    }
     console.log('Favorite to delete:', favorites[index].name);
 
     // Confirm deletion with user
@@ -116,6 +138,9 @@ function deleteFavorite(index) {
         // Remove from array
         favorites.splice(index, 1);
         console.log('Favorite deleted. Total remaining:', favorites.length);
+
+        // Persist changes
+        saveFavorites(favorites);
 
         // Re-apply current search/filter
         searchFavorites();
@@ -162,6 +187,9 @@ function addFavorite(event) {
     favorites.push(newFavorite);
     console.log('Total favorites:', favorites.length);
 
+    // Persist to localStorage
+    saveFavorites(favorites);
+
     // Clear the form
     form.reset();
 
@@ -178,5 +206,5 @@ categoryFilter.addEventListener('change', searchFavorites);
 
 console.log('Event listeners attached - app is ready!');
 
-// Display empty message when page first loads
+// Display empty message or persisted favorites when page first loads
 displayFavorites();
