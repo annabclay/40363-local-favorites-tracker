@@ -31,7 +31,7 @@
    LAB11: Add header with gradient background
    ========================================== */
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #16a2e2 0%, #ec70d9 100%);
     color: white;
     padding: 2rem 0;
     text-align: center;
@@ -62,7 +62,7 @@ main {
 }
 
 section {
-    background: white;
+    background: rgb(251, 251, 251);
     padding: 2rem;
     margin-bottom: 2rem;
     border-radius: 10px;
@@ -70,7 +70,7 @@ section {
 }
 
 h2 {
-    color: #667eea;
+    color: #555;
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
 }
@@ -99,7 +99,7 @@ select,
 textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 2px solid #ddd;
+    border: 2px solid #555;
     border-radius: 5px;
     font-size: 1rem;
     font-family: inherit;
@@ -110,7 +110,7 @@ input[type="text"]:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #555;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -154,14 +154,14 @@ textarea {
 }
 
 .btn-primary {
-    background-color: #667eea;
+    background-color: #ea66d8;
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #5568d3;
+    background-color: #ea66d8;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 12px rgba(9, 48, 226, 0.4);
 }
 
 .btn-primary:active {
@@ -263,7 +263,7 @@ textarea {
 }
 
 .favorite-card:hover {
-    border-color: #667eea;
+    border-color: #f10fee;
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
     transform: translateY(-5px);
 }
@@ -277,7 +277,7 @@ textarea {
 .favorite-category {
     display: inline-block;
     padding: 0.25rem 0.75rem;
-    background-color: #667eea;
+    background-color: #ea66d8;
     color: white;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -285,7 +285,7 @@ textarea {
 }
 
 .favorite-rating {
-    color: #f39c12;
+    color: #12f368;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
 }
