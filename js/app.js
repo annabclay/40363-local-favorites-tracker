@@ -208,3 +208,10 @@ console.log('Event listeners attached - app is ready!');
 
 // Display empty message or persisted favorites when page first loads
 displayFavorites();
+
+// ensure favorites are persisted if the user closes/navigates away
+window.addEventListener('beforeunload', () => saveFavorites(favorites));
+window.addEventListener('pagehide', () => saveFavorites(favorites));
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') saveFavorites(favorites);
+});
