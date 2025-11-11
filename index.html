@@ -105,30 +105,10 @@
     </div>
 </section>
 </main>
-<!-- Search/Filter Section -->
-<section class="search-section">
-    <h2>My Favorites</h2>
-    <div class="search-controls">
-        <input type="text" id="search-input" placeholder="Search favorites..." aria-label="Search favorites">
-        <select id="category-filter" aria-label="Filter by category">
-            <option value="all">All Categories</option>
-            <option value="coffee">Coffee Shop</option>
-            <option value="restaurants">Restaurant</option>
-            <option value="parks">Park</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="study-spots">Study Spot</option>
-            <option value="fitness">Fitness</option>
-            <option value="other">Other</option>
-        </select>
-        <button type="button" id="clear-all-btn" class="btn btn-secondary">Clear All</button>
-    </div>
-</section>
-
 <!-- Favorites Display Section -->
 <section class="favorites-section">
     <div id="favorites-list" class="favorites-grid">
         <!-- JavaScript will add favorite cards here -->
-
     </div>
 </section>
 
@@ -142,5 +122,17 @@
 
     <!-- JavaScript at end of body -->
     <script src="js/app.js"></script>
+    <script>
+      const list = document.getElementById('favorites-list');
+      console.log('favorites-list element:', list);
+      console.log('children count:', list?.children.length);
+      console.log('search-input:', document.getElementById('search-input'));
+      console.log('category-filter:', document.getElementById('category-filter'));
+      console.log('localStorage keys:', Object.keys(localStorage));
+      try {
+        const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+        console.log('stored favorites:', favs, 'length:', favs.length);
+      } catch(e){console.error('parse error', e)}
+    </script>
 </body>
 </html>
